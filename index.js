@@ -26,7 +26,8 @@ app.get('/', (req, res) => {
 
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
-    db.run(`INSERT INTO auth (name, email, password) VALUES (?,?,?)`, [name, email, password], (err) => {
+    db.run(`INSERT INTO auth (name, email, password) VALUES (?,?,?)`, [name, email, password], 
+        function (err) {
         if(err) console.log("the error::" + err);
 
         res.json({id: this.lastID, name, email, password});
